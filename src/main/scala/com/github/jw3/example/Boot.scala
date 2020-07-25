@@ -3,6 +3,7 @@ package com.github.jw3.example
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.Flow
+import io.cloudstate.operator.Watcher
 import skuber.ConfigMap
 import skuber.api.client.{EventType, WatchEvent}
 import skuber.json.format._

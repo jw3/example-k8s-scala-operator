@@ -16,7 +16,7 @@
 
 // see: https://github.com/cloudstateio/cloudstate/blob/master/operator/src/main/scala/io/cloudstate/operator/Watcher.scala
 
-package com.github.jw3.example
+package io.cloudstate.operator
 
 import akka.NotUsed
 import akka.stream.scaladsl.{Flow, Keep, RestartSource, Sink, Source}
