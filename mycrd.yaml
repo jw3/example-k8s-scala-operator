@@ -1,0 +1,9 @@
+---
+apiVersion: com.github.jw3/v1alpha1
+kind: MyCRD
+metadata:
+  name: frist-crd
+spec:
+  uri:
+    - foo
+    - bar

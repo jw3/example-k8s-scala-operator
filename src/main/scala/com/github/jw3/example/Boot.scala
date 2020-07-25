@@ -30,4 +30,17 @@ object Boot extends App {
       case _ =>
     }
   )
+
+  Watcher.watch[MyCRD.Resource](
+    client.usingNamespace(operatorNamespace),
+    Flow[WatchEvent[MyCRD.Resource]].map {
+      case WatchEvent(EventType.ADDED, crd) =>
+        println(s"mycrd ${crd.name} added")
+      case WatchEvent(EventType.MODIFIED, crd) =>
+        println(s"mycrd ${crd.name} modified")
+      case WatchEvent(EventType.DELETED, crd) =>
+        println(s"mycrd ${crd.name} deleted")
+      case _ =>
+    }
+  )
 }
