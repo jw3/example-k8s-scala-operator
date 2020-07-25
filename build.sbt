@@ -9,3 +9,10 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-slf4j" % "2.6.6",
   "com.typesafe.akka" %% "akka-http" % "10.1.12"
 )
+
+dockerUpdateLatest := true
+dockerUsername := Some("jwiii")
+dockerBaseImage := "adoptopenjdk/openjdk11:debianslim-jre"
+dockerExposedPorts := Nil
+
+enablePlugins(JavaServerAppPackaging, DockerPlugin)
