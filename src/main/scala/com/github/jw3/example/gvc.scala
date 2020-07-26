@@ -9,7 +9,7 @@ import skuber.apiextensions.CustomResourceDefinition
 import skuber.json.format._
 import skuber.{CustomResource, ListResource, ResourceDefinition}
 
-object MyCRD {
+object gvc {
   type Resource = CustomResource[Spec, Status]
   type ResourceList = ListResource[Resource]
 
@@ -52,7 +52,7 @@ object MyCRD {
   implicit val mycrdResourceDefinition = ResourceDefinition[Resource](
     group = "jw3.github.com",
     version = "v1",
-    kind = "MyCRD",
+    kind = "GVC",
     shortNames = Nil,
     subresources = Some(Subresources().withStatusSubresource)
   )

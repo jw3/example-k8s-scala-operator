@@ -1,8 +1,8 @@
 ---
 apiVersion: jw3.github.com/v1
-kind: MyCRD
+kind: GVC
 metadata:
-  name: frist-crd
+  name: frist-gvc
 spec:
   uri: https://github.com/jw3/empty
   ref: master

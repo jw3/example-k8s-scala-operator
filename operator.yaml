@@ -2,16 +2,16 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: mycrds.jw3.github.com
+  name: gvcs.jw3.github.com
 spec:
   group: jw3.github.com
   scope: Namespaced
   names:
-    plural: mycrds
-    singular: mycrd
-    kind: MyCRD
+    plural: gvcs
+    singular: gvc
+    kind: GVC
     shortNames:
-      - mcd
+      - gv
   versions:
     - name: v1
       served: true

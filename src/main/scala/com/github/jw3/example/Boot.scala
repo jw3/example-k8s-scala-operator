@@ -16,15 +16,15 @@ object Boot extends App {
   import system.dispatcher
   val client = skuber.k8sInit
 
-  Watcher.watch[MyCRD.Resource](
+  Watcher.watch[gvc.Resource](
     client.usingNamespace(operatorNamespace),
-    Flow[WatchEvent[MyCRD.Resource]].map {
-      case WatchEvent(EventType.ADDED, crd) =>
-        println(s"mycrd ${crd.name} added with uri of ${crd.spec.uri}")
-      case WatchEvent(EventType.MODIFIED, crd) =>
-        println(s"mycrd ${crd.name} modified")
-      case WatchEvent(EventType.DELETED, crd) =>
-        println(s"mycrd ${crd.name} deleted")
+    Flow[WatchEvent[gvc.Resource]].map {
+      case WatchEvent(EventType.ADDED, gv) =>
+        println(s"gvc ${gv.name} added ${gv.spec.uri}")
+      case WatchEvent(EventType.MODIFIED, gv) =>
+        println(s"gvc ${gv.name} modified")
+      case WatchEvent(EventType.DELETED, gv) =>
+        println(s"gvc ${gv.name} deleted")
       case _ =>
     }
   )
