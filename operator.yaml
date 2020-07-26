@@ -1,22 +1,40 @@
 ---
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: mycrds.com.github.jw3
+  name: mycrds.jw3.github.com
 spec:
-  group: com.github.jw3
-  versions:
-    - name: v1alpha1
-      served: true
-      storage: true
+  group: jw3.github.com
   scope: Namespaced
   names:
     plural: mycrds
     singular: mycrd
     kind: MyCRD
-  subresources:
-    status: {}
-
+    shortNames:
+      - mcd
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                uri:
+                  type: string
+                  pattern: '^http(s)?://.+?$'
+                ref:
+                  type: string
+                  default: master
+                pvsz:
+                  type: string
+                  default: 100Mi
+                  pattern: '^\d+(M|G)i$'
+      subresources:
+        status: {}
 ---
 apiVersion: apps/v1
 kind: Deployment

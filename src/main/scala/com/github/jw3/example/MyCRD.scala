@@ -6,15 +6,17 @@ import play.api.libs.functional.syntax._
 import play.api.libs.json._
 import skuber.ResourceSpecification.Subresources
 import skuber.apiextensions.CustomResourceDefinition
-import skuber.{Container, CustomResource, ListResource, ResourceDefinition}
 import skuber.json.format._
+import skuber.{CustomResource, ListResource, ResourceDefinition}
 
 object MyCRD {
   type Resource = CustomResource[Spec, Status]
   type ResourceList = ListResource[Resource]
 
   case class Spec(
-      uri: List[String]
+      uri: String,
+      ref: String,
+      pvsz: String
   )
   object Spec {
     implicit val format: Format[Spec] = Json.format
@@ -47,9 +49,9 @@ object MyCRD {
         .inmap[Status](c => Status(c.getOrElse(Nil)), s => Some(s.conditions))
   }
 
-  implicit val statefulStoreResourceDefinition = ResourceDefinition[Resource](
-    group = "com.github.jw3",
-    version = "v1alpha1",
+  implicit val mycrdResourceDefinition = ResourceDefinition[Resource](
+    group = "jw3.github.com",
+    version = "v1",
     kind = "MyCRD",
     shortNames = Nil,
     subresources = Some(Subresources().withStatusSubresource)

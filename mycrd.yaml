@@ -1,9 +1,9 @@
 ---
-apiVersion: com.github.jw3/v1alpha1
+apiVersion: jw3.github.com/v1
 kind: MyCRD
 metadata:
   name: frist-crd
 spec:
-  uri:
-    - foo
-    - bar
+  uri: https://github.com/jw3/empty
+  ref: master
+  pvsz: 10Mi
