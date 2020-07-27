@@ -12,7 +12,17 @@ libraryDependencies ++= Seq(
 
 dockerUpdateLatest := true
 dockerUsername := Some("jwiii")
+dockerRepository := deriveRegistry()
 dockerBaseImage := "adoptopenjdk/openjdk11:debianslim-jre"
 dockerExposedPorts := Nil
 
 enablePlugins(JavaServerAppPackaging, DockerPlugin)
+
+def deriveRegistry(): Option[String] =
+  if (sys.env.exists {
+        case ("MICROK8S", "1") => true
+        case ("MICROK8S", "0") => false
+        case ("MICROK8S", b)   => b.toBoolean
+        case _                 => false
+      }) Some("localhost:32000")
+  else None
