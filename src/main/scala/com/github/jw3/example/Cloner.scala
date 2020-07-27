@@ -20,7 +20,7 @@ object Cloner {
 
     val container = skuber.Container(
       name = "lfs",
-      image = "jwiii/centos-python-36-centos7-lfs:latest",
+      image = "jwiii/python-36-centos7-lfs:latest",
       volumeMounts = List(
         Volume.Mount(
           gvc.name,
